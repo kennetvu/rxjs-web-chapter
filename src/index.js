@@ -1,5 +1,6 @@
-
+import 'purecss';
 import Rx from 'rxjs/Rx';
+import './style.css';
 
 const app = document.getElementById("app");
 
