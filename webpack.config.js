@@ -2,9 +2,12 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const conf = {
-  entry: './src/index.js',
+  entry: {
+    'app': './src/index.js',
+    'basic': './src/basic-observable/index.js'
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -29,9 +32,17 @@ const conf = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-    title: 'RxJS - Webchapter',
-    template: 'src/index.html'
-  })]
+      title: 'RxJS - Webchapter',
+      chunks: ['app'],
+      template: 'src/index.html'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'RxJS - Webchapter',
+      chunks: ['basic'],
+      template: 'src/index.html',
+      filename:'basic.html'
+    }),
+  ]
 };
 
 module.exports = conf;

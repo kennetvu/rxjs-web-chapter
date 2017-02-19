@@ -1,9 +1,13 @@
-import 'purecss';
+import 'bulma/css/bulma.css';
 import Rx from 'rxjs/Rx';
 import './style.css';
 
+const header = document.getElementById("header");
 const app = document.getElementById("app");
-
+app.addEventListener("mousemove", (e) => {
+  console.log('move');
+    console.log(e);
+});
 
 const fiveSeconds$ = Rx.Observable.create((observer) => {
   observer.next(2);
@@ -18,23 +22,20 @@ const fiveSeconds$ = Rx.Observable.create((observer) => {
     observer.next(3);
     observer.complete();
   }, 3000);
-}).filter(val=>val%2==0);
-
-
-
+}).filter(val => val % 2 == 0);
 
 
 fiveSeconds$.subscribe({
   next: (val) => {
     console.log(val);
-     app.innerHTML += `${val} <br />`;
+    header.innerHTML += `${val} <br />`;
   },
   err: () => {
 
   },
   complete: () => {
     const complete = 'COMPLETE!!!';
-    app.innerHTML += `${complete}`;
+    header.innerHTML += `${complete}`;
   }
 });
 
