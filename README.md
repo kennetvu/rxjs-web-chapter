@@ -1,17 +1,20 @@
-# RxJS boilerplate
-Boilerplate for building RxJS application
+# RxJS for web chapter
+RxJS application built on [RxJS boilerplate](https://github.com/kennetvu/rxjs-boilerplate) for demo purposes. 
 
-### Version
-1.0.0
+Built as a multipage application with use of:
+- RxJS
+- Webpack
+- Babel
+- Bulma
+- Font-awesome
+
+Using webpack-dev-server to serve files.
+
 
 ### Requirements
 - Node 6+
 - Yarn(latest) / npm(3.0+)
 
-### Npm dependencies
-- Webpack 2
-- Webpack dev server
-- RxJS
 
 ### Installation
 Install dependencies (Webpack, Babel, RxJS 5)
