@@ -1,6 +1,6 @@
-import 'bulma/css/bulma.css';
+
 import Rx from 'rxjs/Rx';
-import './style.css';
+
 
 const header = document.getElementById("header");
 const app = document.getElementById("app");

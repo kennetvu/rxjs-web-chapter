@@ -1,10 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const conf = {
   entry: {
-    'app': './src/index.js',
-    'basic': './src/basic-observable/index.js'
+    'app': './src/app/index.js',
+    'common': './src/common.js',
+    'observable': './src/observable/index.js'
   },
   output: {
     filename: '[name].bundle.js',
@@ -20,7 +23,15 @@ const conf = {
           "css-loader"
         ]
       },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: ["url-loader?limit=10000&mimetype=application/font-woff"] },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: ["file-loader"] },
+      { 
+        test: /\.(png|jpg)$/,
+        use: [
+          "file-loader",
+        ]
 
+      },
     ]
   },
   devServer: {
@@ -33,15 +44,18 @@ const conf = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: 'RxJS - Webchapter',
-      chunks: ['app'],
+      chunks: ['common','app'],
       template: 'src/index.html'
     }),
     new HtmlWebpackPlugin({
       title: 'RxJS - Webchapter',
-      chunks: ['basic'],
+      chunks: ['common','observable'],
       template: 'src/index.html',
-      filename:'basic.html'
+      filename:'observable.html'
     }),
+    new CopyWebpackPlugin([
+      {from: './src/logo.png'}
+    ]),
   ]
 };
 
