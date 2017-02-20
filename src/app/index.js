@@ -2,11 +2,17 @@
 import Rx from 'rxjs/Rx';
 
 
+const title = document.getElementById("title");
+title.innerHTML = 'Welcome to RxJS';
+const content = document.getElementById("content");
+content.innerHTML = 'Lorem ipsum';
+
+
 const header = document.getElementById("header");
 const app = document.getElementById("app");
 app.addEventListener("mousemove", (e) => {
   console.log('move');
-    console.log(e);
+  console.log(e);
 });
 
 const fiveSeconds$ = Rx.Observable.create((observer) => {

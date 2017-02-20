@@ -1,6 +1,6 @@
 import 'bulma/css/bulma.css';
 import Rx from 'rxjs/Rx';
-
+console.log("hllo");
 const simpleObserver$ = Rx.Observable
 .create((observer) => {
   observer.next(2);
