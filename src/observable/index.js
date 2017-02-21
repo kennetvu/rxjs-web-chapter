@@ -1,26 +1,29 @@
-import 'bulma/css/bulma.css';
-import Rx from 'rxjs/Rx';
-console.log("hllo");
-const simpleObserver$ = Rx.Observable
-.create((observer) => {
+import Rx from 'rxjs';
+
+const observerable = Rx.Observable.create((observer) => {
+  observer.next(1);
   observer.next(2);
-  setTimeout(function() {
+  observer.next(3);
+  setTimeout(()=> {
     observer.complete();
   }, 1000);
-  });
-
-
-simpleObserver$.subscribe({
-  next: (val) => {
-    console.log(val);
-  },
-  err: () => {
-
-  },
-  complete: () => {
-    console.log("coMPLETE");
-  }
+  observer.next(4);
 });
+
+const nextFn = (val) => {
+  console.log(val);
+};
+
+const errorFn = (val) => {
+  console.log(`Error: ${val}`);
+};
+
+const completeFn = () => {
+  console.log(`Done!`);
+};
+
+observerable.subscribe(nextFn, errorFn, completeFn);
+
 
 
 
