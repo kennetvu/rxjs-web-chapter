@@ -4,7 +4,11 @@
   "main": "index.js",
   "repository": {},
   "license": "MIT",
+  "scripts": {
+    "start": "json-server -p 3001 -w db.json"
+  },
   "dependencies": {
-    "express": "^4.14.1"
+    "express": "^4.14.1",
+    "json-server": "^0.9.5"
   }
 }

@@ -1,19 +1,12 @@
-
 import Rx from 'rxjs/Rx';
-
+import updateContent from '../utility';
 
 const title = document.getElementById("title");
 title.innerHTML = 'Welcome to RxJS';
+
 const content = document.getElementById("content");
-content.innerHTML = 'Lorem ipsum';
+content.innerHTML = '';
 
-
-const header = document.getElementById("header");
-const app = document.getElementById("app");
-app.addEventListener("mousemove", (e) => {
-  console.log('move');
-  console.log(e);
-});
 
 const fiveSeconds$ = Rx.Observable.create((observer) => {
   observer.next(2);
@@ -34,14 +27,15 @@ const fiveSeconds$ = Rx.Observable.create((observer) => {
 fiveSeconds$.subscribe({
   next: (val) => {
     console.log(val);
-    header.innerHTML += `${val} <br />`;
+    updateContent(val);
+    // content.innerHTML += `${val} <br />`;
   },
   err: () => {
 
   },
   complete: () => {
     const complete = 'COMPLETE!!!';
-    header.innerHTML += `${complete}`;
+    content.innerHTML += `${complete}`;
   }
 });
 

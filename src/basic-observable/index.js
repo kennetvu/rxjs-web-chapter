@@ -1,17 +1,19 @@
-const myObservable = (observer) => {
-  observer.next(1);
-  observer.next(2);
-  observer.next(3);
-  observer.complete();
-};
+import Rx from 'rxjs/Rx';
+import updateContent from '../utility';
+/* HTML magic*/
 
-var subscription = source.subscribe(
-  function (x) {
-    console.log('Next: ' + x);
-  },
-  function (err) {
-    console.log('Error: ' + err);
-  },
-  function () {
-    console.log('Completed');
-  });
+// Slide 24
+// (oberver) => {}
+const myObservable = Rx.Observable.create(function (observer) {
+  console.log("observable!");
+  observer.next(1); // first value
+  observer.next(2); // second vaue
+  observer.next(3); // third value
+  setTimeout(() => {
+    observer.next(4);
+    observer.complete(); // complete after 4 seconds
+  }, 4000)
+});
+
+console.log("Observables are laaazy");
+// updateContent("koko");
