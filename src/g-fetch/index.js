@@ -21,7 +21,10 @@ const posts$ = input
 // Rx.Observable.combineLatest(
 //   input,
 // )
-const sub = posts$.subscribe((val) => replaceContent(JSON.stringify(val)));
+const sub = posts$.subscribe((val) => {
+  // const mapd = val.map(p => `${p.firstName} ${lastName}`);
+  replaceContent(JSON.stringify(val))
+});
 
 // subscription
 // setTimeout(()=> {
