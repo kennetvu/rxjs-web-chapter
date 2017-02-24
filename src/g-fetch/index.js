@@ -2,11 +2,18 @@ import Rx from 'rxjs/Rx';
 import updateContent, { replaceContent } from '../utility';
 /* HTML magic*/
 
+const inputfield = document.querySelector('input');
 
-const input = Rx.Observable.fromEvent(document.querySelector('input'), 'input')
+const input = Rx.Observable.fromEvent(inputfield, 'input')
   .map(e => e.target.value)
   .combineLatest(Rx.Observable.interval(1000))
   .pluck(0);
+
+// input
+//   .filter(value => value.length > 2)
+//   .subscribe(value => replaceContent(`inputfield: ${value}`));
+//   .subscribe(value => updateContent(`inputfield: ${value}`));
+
 
 const posts$ = input
   .map(val => `http://localhost:3001/players?q=${val}`)
@@ -15,16 +22,10 @@ const posts$ = input
       .map(e => e.response)
   );
 
-// const fetchEveryTenSec =
-//   .combineLatest(posts$);
-//
-// Rx.Observable.combineLatest(
-//   input,
-// )
 const sub = posts$.subscribe((val) => {
   // const mapd = val.map(p => `${p.firstName} ${lastName}`);
   replaceContent(JSON.stringify(val))
-});
+}); // edit server
 
 // subscription
 // setTimeout(()=> {

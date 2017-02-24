@@ -12,7 +12,7 @@ const myObservable = Rx.Observable.create(function (observer) {
   setTimeout(() => {
     observer.next(4);
     observer.complete(); // complete after 4 seconds
-  }, 4000)
+  }, 4000) // 4sec
 });
 
 console.log("Observables are laaazy");

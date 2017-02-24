@@ -20,26 +20,27 @@ const futureValue = new Promise((resolve, reject) => {
 //   });
 // }, 3000);
 
-// const futureValueObs = Rx.Observable.create((observer) => {
-//   setTimeout(() => {
-//     console.log("observable: timeout hit!");
-//     observer.next("observable: I'm from the future");
-//   }, 1000); //wait 2 sec
-//   console.log("observable: started")
-// });
 
-// futureValueObs.subscribe((val) => {
-//   console.log("observable: first");
-//   console.log(val);
-// });
+const futureValueObs = Rx.Observable.create((observer) => {
+  setTimeout(() => {
+    console.log("observable: timeout hit!");
+    observer.next("observable: I'm from the future");
+  }, 1000); //wait 2 sec
+  console.log("observable: started")
+});
+
+futureValueObs.subscribe((val) => {
+  console.log("observable: first");
+  console.log(val);
+});
 //
-// // Not cached observer
-// setTimeout(() => {
-//   futureValueObs.subscribe((val) => {
-//     console.log("observable: second");
-//     console.log(val);
-//   });
-// }, 2000);
+// Not cached observer
+setTimeout(() => {
+  futureValueObs.subscribe((val) => {
+    console.log("observable: second");
+    console.log(val);
+  });
+}, 2000);
 
 
 // Using RXJS on observable

@@ -1,5 +1,7 @@
 import Rx from 'rxjs';
-import updateContent from '../utility';
+import updateContent, {replaceTitle} from '../utility';
+replaceTitle("Observables are awesome");
+
 const observable = Rx.Observable.create((observer) => {
   observer.next(1);
   observer.next(2);
@@ -7,11 +9,13 @@ const observable = Rx.Observable.create((observer) => {
   const timeoutId = setTimeout(()=> {
     observer.next(4);
     observer.complete();
-  }, 1000);
+  }, 2000); //wait 2 sec
   // return function unsubscribe(){
   //   clearTimeout(timeoutId);
   // }
 });
+
+
 const observer = {
   next: x => {
     console.log('Observer got a next value: ' + x);
@@ -24,10 +28,11 @@ const observer = {
   },
 };
 
-
 console.log('just before subscribe');
-// const subscription = observable.subscribe({
-observable.subscribe(observer);
+// observable.subscribe(observer);
+// const subscription = observable.subscribe(observer);
 console.log('just after subscribe');
+
 // subscription.unsubscribe();
+
 
