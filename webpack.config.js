@@ -13,6 +13,7 @@ const conf = {
     'mouse': './src/e-mouseevents/index.js',
     'promise': './src/f-promise/promise.js',
     'fetch': './src/g-fetch/index.js',
+    'react': './src/h-react/index.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -88,6 +89,12 @@ const conf = {
       chunks: ['common','fetch'],
       template: 'src/fetch.html',
       filename:'fetch.html'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'RxJS - Webchapter',
+      chunks: ['common', 'react'],
+      template: 'src/react.html',
+      filename: 'react.html'
     }),
     new CopyWebpackPlugin([
       {from: './src/logo.png'}
