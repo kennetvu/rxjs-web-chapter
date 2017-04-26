@@ -10,9 +10,9 @@ const observable = Rx.Observable.create((observer) => {
     observer.next(4);
     observer.complete();
   }, 2000); //wait 2 sec
-  // return function unsubscribe(){
-  //   clearTimeout(timeoutId);
-  // }
+  return function unsubscribe(){
+    clearTimeout(timeoutId);
+  }
 });
 
 
@@ -32,7 +32,7 @@ console.log('just before subscribe');
 // observable.subscribe(observer);
 // const subscription = observable.subscribe(observer);
 console.log('just after subscribe');
-
 // subscription.unsubscribe();
+
 
 

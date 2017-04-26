@@ -9,40 +9,48 @@ const futureValue = new Promise((resolve, reject) => {
   console.log("promise: started")
 });
 
-// futureValue.then(val => {
-//   console.log(val);
-// });
-
+futureValue.then(val => {
+  console.log(val);
+});
 // Promise is CACHED!
-// setTimeout(() => {
-//   futureValue.then(val => {
-//     console.log(val);
-//   });
-// }, 3000);
-
-// const futureValueObs = Rx.Observable.create((observer) => {
-//   setTimeout(() => {
-//     console.log("observable: timeout hit!");
-//     observer.next("observable: I'm from the future");
-//   }, 1000); //wait 2 sec
-//   console.log("observable: started")
+// futureValue.then(val => {
+  // console.log(val,2);
 // });
+// Promise is CACHED! should print timeout and promise started first.
+// setTimeout(() => {
+  // futureValue.then(val => {
+    // console.log(val,3);
+  // });
+// }, 3000); 
+// how do I cancel??
+
+const futureValueObs = Rx.Observable.create((observer) => {
+  setTimeout(() => {
+    console.log("observable: timeout hit!");
+    observer.next("observable: I'm from the future");
+  }, 1000); //wait 2 sec
+  console.log("observable: started")
+});
+// observables are lazy
 
 // futureValueObs.subscribe((val) => {
 //   console.log("observable: first");
 //   console.log(val);
 // });
-//
+// futureValueObs.subscribe((val) => {
+//   console.log("observable: second");
+//   console.log(val);
+// });
 // // Not cached observer
 // setTimeout(() => {
 //   futureValueObs.subscribe((val) => {
-//     console.log("observable: second");
+//     console.log("observable: third");
 //     console.log(val);
 //   });
 // }, 2000);
 
 
-// Using RXJS on observable
+// Using RXJS on observable - Check clock
 // const promiseObs = Rx.Observable.fromPromise(futureValue);
 // promiseObs.subscribe((v) => console.log(v));
 
