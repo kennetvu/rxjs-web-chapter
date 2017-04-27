@@ -7,13 +7,12 @@ const inputfield = document.querySelector('input');
 const input = Rx.Observable.fromEvent(inputfield, 'input')
   .map(e => e.target.value)
   .combineLatest(Rx.Observable.interval(1000))
-  .pluck(0);
+  .pluck(0); // Returns an Observable containing the value of a specified nested property from all elements in the Observable sequence.
 
-// input
-//   .filter(value => value.length > 2)
-//   .subscribe(value => replaceContent(`inputfield: ${value}`));
-//   .subscribe(value => updateContent(`inputfield: ${value}`));
-
+const input$ = input
+  .filter(value => value.length > 2)
+input$.subscribe(value => replaceContent(`inputfield: ${value}`));
+// input$.subscribe(value => updateContent(`inputfield: ${value}`));
 
 const posts$ = input
   .map(val => `http://localhost:3001/players?q=${val}`)
@@ -22,10 +21,10 @@ const posts$ = input
       .map(e => e.response)
   );
 
-const sub = posts$.subscribe((val) => {
+// const sub = posts$.subscribe((val) => {
   // const mapd = val.map(p => `${p.firstName} ${lastName}`);
-  replaceContent(JSON.stringify(val))
-}); // edit server
+  // replaceContent(JSON.stringify(val))
+// }); // edit server
 
 // subscription
 // setTimeout(()=> {

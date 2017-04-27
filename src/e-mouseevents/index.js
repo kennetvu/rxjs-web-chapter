@@ -4,7 +4,6 @@ import updateContent, { replaceContent, replaceTitle } from '../utility';
 replaceTitle('Bleeh mousevents');
 
 const app = document;
-
 // mouse: mousemove, click, scroll
 // Keyboard: keyup, keydown
 // app.addEventListener("mousemove", (e) => {
@@ -19,6 +18,7 @@ const app = document;
 // really?????? addEventListener???
 
 
+
 const clickObservable = Rx.Observable.fromEvent(app, 'mousemove')
   .map(e => ({ x: e.x, y: e.y }));
 
@@ -29,9 +29,8 @@ const clickObservable = Rx.Observable.fromEvent(app, 'mousemove')
 // });
 
 
-// const lessThanFiveHundred = clickObservable.filter(({ x, y }) => x < 500 && y < 500);
-// const greaterThanOneThousand = clickObservable.filter(({ x, y }) => x > 1000);
-//
+// const lessThanFiveHundred = clickObservable.filter(({ x, y }) => x < 200 && y < 200);
+// const greaterThanOneThousand = clickObservable.filter(({ x, y }) => x > 800);
 // lessThanFiveHundred.merge(greaterThanOneThousand).subscribe(x => console.log(x));
 
 // const mouseMove = Rx.Observable.fromEvent(document, 'mousemove');
